@@ -19,15 +19,18 @@ public class Main {
 
                 // Verify if file matches the graph
                 if (!line.matches("\\d+(\\s=\\s)(\\d*\\s)*(\\d+)")) {
-                    System.out.println("O arquivo de entrada não segue o padrão");
+                    System.out.println("A linha ("+ line + ") do arquivo de entrada não segue o padrão");
                     return;
                 }
 
-                String[] text1 = line.split("=");
+                // Divide the line
+                String[] bruteFormat = line.split("=");
 
-                int vertexId = Integer.parseInt(text1[0].trim());
+                // Get the first number as a vertex id
+                int vertexId = Integer.parseInt(bruteFormat[0].trim());
 
-                Arrays.stream(text1[1].trim().split(" "))
+                // Divide the string in the spaces, convert the number to an Integer and add in the graph
+                Arrays.stream(bruteFormat[1].trim().split(" "))
                         .map(value -> Integer.parseInt(value.trim()))
                         .forEach((Integer i) -> g1.add_edge(vertexId, i));
             }
@@ -43,9 +46,9 @@ public class Main {
         boolean result = g1.quasiThresholdRecognition();
 
         if (result) {
-            System.out.println("É trivialmente perfeito");
+            System.out.println("Is trivially perfect / Quasi Threshold");
         } else {
-            System.out.println("Não é trivialmente perfeito");
+            System.out.println("Is not trivially perfect / Quasi Threshold");
         }
 
     }

@@ -21,7 +21,6 @@ public class Vertex implements Comparable<Vertex> {
             System.out.print(" " + v.id );
     }
 
-
     // Used to sort by degree
     @Override public int compareTo( Vertex otherVertex ) {
         if( otherVertex.degree() > this.degree())

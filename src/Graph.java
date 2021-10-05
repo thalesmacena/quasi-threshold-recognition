@@ -42,13 +42,6 @@ public class Graph {
         v2.add_neighbor( v1 );
     }
 
-    public void del_vertex( int id ) {
-        for( Vertex v1 : vertex_set.values()) {
-            v1.nbhood.remove( id );
-        }
-        vertex_set.remove( id );
-    }
-
     // verify if is trivially perfect
     public boolean quasiThresholdRecognition() {
         // adds a universal vertex
@@ -79,7 +72,7 @@ public class Graph {
 
             // Se p(actual) != p(neig) the graph is not trivially perfect
             for (Vertex neig : actual.nbhood.values()) {
-                if (!neig.isVisited() && !(neig.getParent() == actual.getParent())) {
+                if (!neig.isVisited() && neig.getParent() != actual.getParent()) {
                     return false;
                 }
             }
